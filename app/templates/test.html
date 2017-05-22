@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+  <title>这是嘛呀</title>
+
+  <!-- Bootstrap -->
+  <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../static/css/style.css" rel="stylesheet">
+  <link href="../static/css/materialize.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#healthnavbar">
+            <span class="sr-only">切换导航</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">这是嘛呀</a>
+      </div>
+      <div class="collapse navbar-collapse" id="healthnavbar">
+        <ul class="nav navbar-nav">
+          <li><a href="#">主页</a></li>
+          <li><a href="#">健康管家</a></li>
+          <li class="active"><a href="#">健康测试</a></li>
+          <li><a href="#">私人医生</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a data-toggle="modal" data-target="#login"><span class="glyphicon glyphicon-user" style="margin-right:10px"></span>Login</a></li>
+          <li><a data-toggle="modal" data-target="#register"><span class="glyphicon glyphicon-log-in" style="margin-right:10px"></span>Regist</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div id="login" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <button class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+        </div>
+        <div class="modal-title">
+          <h1 class="text-center">登录</h1>
+        </div>
+        <div class="modal-body">
+          <form class="form-group" action="">
+            <div class="form-group">
+              <label for="">用户名</label>
+              <input class="form-control" type="text" placeholder="">
+            </div>
+            <div class="form-group">
+              <label for="">密码</label>
+              <input class="form-control" type="password" placeholder="">
+            </div>
+            <div class="text-right">
+              <button class="btn btn-primary" type="submit">登录</button>
+              <button class="btn btn-danger" data-dismiss="modal">取消</button>
+            </div>
+            <a href="" data-toggle="modal" data-dismiss="modal" data-target="#register">还没有账号？点我注册</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 注册窗口 -->
+  <div id="register" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <button class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+        </div>
+        <div class="modal-title">
+          <h1 class="text-center">注册</h1>
+        </div>
+        <div class="modal-body">
+          <form class="form-group" action="">
+            <div class="form-group">
+              <label for="">用户名</label>
+              <input class="form-control" type="text" placeholder="6-15位字母或数字">
+            </div>
+            <div class="form-group">
+              <label for="">密码</label>
+              <input class="form-control" type="password" placeholder="至少6位字母或数字">
+            </div>
+            <div class="form-group">
+              <label for="">再次输入密码</label>
+              <input class="form-control" type="password" placeholder="至少6位字母或数字">
+            </div>
+            <div class="form-group">
+              <label for="">邮箱</label>
+              <input class="form-control" type="email" placeholder="例如:123@123.com">
+            </div>
+            <div class="text-right">
+              <button class="btn btn-primary" type="submit">提交</button>
+              <button class="btn btn-danger" data-dismiss="modal">取消</button>
+            </div>
+            <a href="" data-toggle="modal" data-dismiss="modal" data-target="#login">已有账号？点我登录</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      {% for healthtest in healthtests %}
+      <div class="col-xs-12 col-sm-4">
+        <div class="card">
+          <div class="card-image">
+            <img src="http://www.materializecss.cn/images/sample-1.jpg">
+            <span class="card-title">{{healthtest.namespace}}</span>
+          </div>
+          <div class="card-content">
+            <p>{{ healthtest.description }}</p>
+          </div>
+          <div class="card-action">
+            <a href="#" class="btn">开始测试</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+
+  <footer>
+  </footer>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="../static/js/bootstrap.min.js"></script>
+</body>
+
+</html>

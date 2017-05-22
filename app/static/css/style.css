@@ -1,0 +1,28 @@
+.icon_img {
+  width: 140px;
+  height: 140px;
+  margin: auto;
+}
+
+.card {
+  width: 250px;
+  box-shadow: 04px8px0rgba(0, 0, 0, 0.2), 06px20px0rgba(0, 0, 0, 0.19);
+  text-align: center;
+}
+
+.imgcard {
+  width: 250px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+}
+
+​ .card .header {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  font-size: 40px;
+}
+
+​ .card .container {
+  padding: 10px;
+}
