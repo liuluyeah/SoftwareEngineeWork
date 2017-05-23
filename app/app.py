@@ -1,6 +1,5 @@
 from flask import Flask,render_template
 from flask_sqlalchemy import SQLAlchemy
-from flask_alembic import Alembic
 import os
 
 
@@ -55,11 +54,15 @@ class Answer(db.Model):
 def index():
     return render_template("index.html")
 
-@app.route("/healthtest")
-def healthtest():
+@app.route("/healthtests")
+def healthtests():
     healthtests = Questionnaire.query.all()
     return render_template("test.html",healthtests=healthtests)
 
+@app.route("/healthtests/<int:naire_id>")
+def healthtest(naire_id):
+    questions = Question.query.filter_by(questionnaire_id=naire_id).all()
+    return render_template("question.html",questions = questions)
 
 
 if __name__ == "__main__":

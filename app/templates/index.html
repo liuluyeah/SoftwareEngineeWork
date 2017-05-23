@@ -2,157 +2,121 @@
 <html lang="zh-CN">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
   <title>这是嘛呀</title>
 
-  <!-- Bootstrap -->
-  <link href="../static/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../static/css/style.css" rel="stylesheet">
-
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="../static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="../static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
 
 <body>
-  <nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#healthnavbar">
-            <span class="sr-only">切换导航</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">这是嘛呀</a>
-      </div>
-      <div class="collapse navbar-collapse" id="healthnavbar">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="#">主页</a></li>
-          <li><a href="#">健康监控</a></li>
-          <li><a href="#">健康测试</a></li>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">这是嘛呀</a>
+        <ul class="right hide-on-med-and-down">
+          <li class="active"><a href="{{url_for("index")}}">主页</a></li>
+          <li><a href="#">健康名片</a></li>
+          <li><a href="{{url_for("healthtests")}}">健康测试</a></li>
         </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a data-toggle="modal" data-target="#login"><span class="glyphicon glyphicon-user" style="margin-right:10px"></span>Login</a></li>
-          <li><a data-toggle="modal" data-target="#register"><span class="glyphicon glyphicon-log-in" style="margin-right:10px"></span>Regist</a></li>
-        </ul>
-      </div>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li class="active"><a href="{{url_for("index")}}">主页</a></li>
+        <li><a href="#">健康名片</a></li>
+        <li><a href="{{url_for("healthtests")}}">健康测试</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
-  <div id="login" class="modal fade">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-body">
-          <button class="close" data-dismiss="modal">
-                        <span>&times;</span>
-                    </button>
-        </div>
-        <div class="modal-title">
-          <h1 class="text-center">登录</h1>
-        </div>
-        <div class="modal-body">
-          <form class="form-group" action="">
-            <div class="form-group">
-              <label for="">用户名</label>
-              <input class="form-control" type="text" placeholder="">
-            </div>
-            <div class="form-group">
-              <label for="">密码</label>
-              <input class="form-control" type="password" placeholder="">
-            </div>
-            <div class="text-right">
-              <button class="btn btn-primary" type="submit">登录</button>
-              <button class="btn btn-danger" data-dismiss="modal">取消</button>
-            </div>
-            <a href="" data-toggle="modal" data-dismiss="modal" data-target="#register">还没有账号？点我注册</a>
-          </form>
-        </div>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center orange-text">健康名片</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">不离开屏幕，了解你的生活习惯对你身体的影响。</h5>
       </div>
-    </div>
-  </div>
-  <!-- 注册窗口 -->
-  <div id="register" class="modal fade" tabindex="-1">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-body">
-          <button class="close" data-dismiss="modal">
-                        <span>&times;</span>
-                    </button>
-        </div>
-        <div class="modal-title">
-          <h1 class="text-center">注册</h1>
-        </div>
-        <div class="modal-body">
-          <form class="form-group" action="">
-            <div class="form-group">
-              <label for="">用户名</label>
-              <input class="form-control" type="text" placeholder="6-15位字母或数字">
-            </div>
-            <div class="form-group">
-              <label for="">密码</label>
-              <input class="form-control" type="password" placeholder="至少6位字母或数字">
-            </div>
-            <div class="form-group">
-              <label for="">再次输入密码</label>
-              <input class="form-control" type="password" placeholder="至少6位字母或数字">
-            </div>
-            <div class="form-group">
-              <label for="">邮箱</label>
-              <input class="form-control" type="email" placeholder="例如:123@123.com">
-            </div>
-            <div class="text-right">
-              <button class="btn btn-primary" type="submit">提交</button>
-              <button class="btn btn-danger" data-dismiss="modal">取消</button>
-            </div>
-            <a href="" data-toggle="modal" data-dismiss="modal" data-target="#login">已有账号？点我登录</a>
-          </form>
-        </div>
+      <div class="row center">
+        <a href="#" id="download-button" class="btn-large waves-effect waves-light orange">开始测试</a>
       </div>
+      <br><br>
+
     </div>
   </div>
 
 
   <div class="container">
-    <div class="jumbotron">
-      <h1>现在享受未来</h1>
-      <p>无需离开屏幕就能了解你的健康状况</p>
-      <p><a class="btn btn-primary btn-lg">测试健康</a></p>
-    </div>
-    <div class="row">
-      <div class="col-xs-12 col-sm-4 text-center">
-        <img src="../static/img/alcohol.png" class="img-rounded icon_img" />
-        <h4 class="text-primary">饮酒易伤身</h4>
-        <p class="text-info">不如来测试测试酗酒对你的身体影响</p>
-        <a href="#" class="btn btn-md btn-success">开始测试</a>
+    <div class="section">
+
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <div class="center"><img class="icon-img" src="../static/img/alcohol.png"></div>
+            <h5 class="center blue-text text-darken-2">酗酒影响测试</h5>
+
+            <p class="light">你是否酗酒？或又是否因为应酬而被迫饮酒？你想知道你饮酒习惯对你的伤害吗？快点击开始测试吧</p>
+            <div class="center">
+              <a class="waves-effect waves-light btn">Test</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <div class="center"><img class="icon-img" src="../static/img/tea.png"></div>
+            <h5 class="center blue-text text-darken-2">饮茶习惯测试</h5>
+
+            <p class="light">可以食无肉，不可饮无茶，你的饮茶习惯对你的身体有着怎样的奇妙影响？快点击开始测试吧</p>
+            <div class="center">
+              <a class="waves-effect waves-light btn">Test</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <div class="center"><img class="icon-img" src="../static/img/alcohol.png"></div>
+            <h5 class="center blue-text text-darken-2">吸烟习惯测试</h5>
+
+            <p class="light">对于吸烟者来说烟如同生命一样，你的烟龄是多少？一天抽烟的频率是多少？你想知道它对你有怎样测影响吗</p>
+            <div class="center">
+              <a class="waves-effect waves-light btn">Test</a>
+            </div>
+          </div>
+        </div>
+
       </div>
-      <div class="col-xs-12 col-md-4 text-center">
-        <img src="../static/img/tea.png" class="img-rounded icon_img" />
-        <h4 class="text-primary">不可饮无茶</h4>
-        <p class="text-info">你想知道喝茶对你有怎样的影响吗？</p>
-        <a href="#" class="btn btn-md btn-success">开始测试</a>
-      </div>
-      <div class="col-xs-12 col-md-4 text-center">
-        <img src="../static/img/smoking.png" class="img-rounded icon_img" />
-        <h4 class="text-primary">一口赛神仙</h4>
-        <p class="text-info">吸烟对我们的身体进行了哪些改造？</p>
-        <a href="#" class="btn btn-md btn-success">开始测试</a>
+      <br><br>
+
+      <div class="section">
+
       </div>
     </div>
 
-  </div>
+    <footer class="page-footer orange">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">马爷威武团队</h5>
+            <p class="grey-text text-lighten-4">A Naive team leader by MRs Ma</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+          Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+          <a class="orange-text text-lighten-3" href="#">这是嘛呀</a>
+        </div>
+      </div>
+    </footer>
 
-  <footer>
-  </footer>
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-  <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="../static/js/bootstrap.min.js"></script>
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="../static/js/materialize.js"></script>
+    <script src="../static/js/init.js"></script>
+
 </body>
 
 </html>

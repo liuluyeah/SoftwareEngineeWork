@@ -15,16 +15,16 @@
 <body>
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">这是嘛呀</a>
-        <ul class="right hide-on-med-and-down">
-          <li><a href="{{url_for("index")}}">主页</a></li>
-          <li><a href="#">健康名片</a></li>
-          <li class="active"><a href="#">健康测试</a></li>
-        </ul>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="{{url_for("index")}}">主页</a></li>
+        <li><a href="#">健康名片</a></li>
+        <li><a href="{{url_for("healthtests")}}">健康测试</a></li>
+      </ul>
 
       <ul id="nav-mobile" class="side-nav">
         <li><a href="{{url_for("index")}}">主页</a></li>
         <li><a href="#">健康名片</a></li>
-        <li class="active"><a href="#">健康测试</a></li>
+        <li><a href="{{url_for("healthtests")}}">健康测试</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -32,30 +32,28 @@
 
   <div class="container">
     <div class="row">
-      {% for healthtest in healthtests %}
-      <div class="col xs12 col s4">
-        <div class="card">
-          <div class="card-image">
-            <img src="http://www.materializecss.cn/images/sample-1.jpg">
-            <span class="card-title">{{healthtest.namespace}}</span>
-          </div>
-          <div class="card-content">
-            <p>{{ healthtest.description }}</p>
-          </div>
-          <div class="card-action">
-            <a href="healthtests/{{healthtest.id}}" class="btn">开始测试</a>
-          </div>
-        </div>
-      </div>
+      {% for question in questions %}
+      <ul class="collection with-header">
+        <li class="collection-header">
+          <h4>{{question.content}}</h4></li>
+          <li class="collection-item">
+        <form action="#">
+          {% for answer in question.answers %}
+          <p>
+            <input name="question{{question.id}}" id="question{{question.id}}-{{answer.id}}" type="radio"/>
+            <label for="question{{question.id}}-{{answer.id}}">{{answer.content}}</label>
+          </p>
+          {% endfor %}
+        </form>
+      </li>
+      </ul>
       {% endfor %}
     </div>
   </div>
 
-
-    <!--  Scripts-->
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="../static/js/materialize.js"></script>
-    <script src="../static/js/init.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="../static/js/materialize.js"></script>
+  <script src="../static/js/init.js"></script>
 
 </body>
 
