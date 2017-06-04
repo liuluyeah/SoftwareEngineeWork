@@ -1,13 +1,4 @@
-from flask import Flask,render_template
-from flask_sqlalchemy import SQLAlchemy
-import os
-
-
-app = Flask(__name__)
-basedir = os.path.abspath(".")
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///"+os.path.join(basedir,"questions.db")
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-db = SQLAlchemy(app)
+from app import db
 
 
 class Questionnaire(db.Model):
@@ -49,21 +40,3 @@ class Answer(db.Model):
     def __repr__(self):
         return("<Answer {} belong to {}>".format(self.content,
                                                  self.question_id))
-
-@app.route("/")
-def index():
-    return render_template("index.html")
-
-@app.route("/healthtests")
-def healthtests():
-    healthtests = Questionnaire.query.all()
-    return render_template("test.html",healthtests=healthtests)
-
-@app.route("/healthtests/<int:naire_id>")
-def healthtest(naire_id):
-    questions = Question.query.filter_by(questionnaire_id=naire_id).all()
-    return render_template("question.html",questions = questions)
-
-
-if __name__ == "__main__":
-    app.run()

@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {{ super() }}
+    <script src="https://cdn.bootcss.com/echarts/3.6.1/echarts.min.js"></script>
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="center" id="gh_charts1" style="width:600px;height:400px;margin:40px">
+        </div>
+        <div class="center" id="gh_charts2" style="width:600px;height: 400px;"></div>
+    </div>
+{% endblock %}
+{% block init %}
+    {{ super() }}
+    <script type="text/javascript">
+        var chart1 = echarts.init(document.getElementById('gh_charts1'))
+
+        option1 = {
+            title: {
+                text: '生活习惯大调查'
+            },
+            tooltip: {},
+            legend: {
+                data: ['平均水平', '你的水平']
+            },
+            radar: {
+                // shape: 'circle',
+                indicator: [
+                    {name: '规律性', max: 6500},
+                    {name: '睡眠习惯', max: 16000},
+                    {name: '饮酒习惯', max: 30000},
+                    {name: '自控能力', max: 38000},
+                    {name: '遗传性', max: 52000},
+                ]
+            },
+            series: [{
+                name: '您与均值的对比',
+                type: 'radar',
+                // areaStyle: {normal: {}},
+                data: [
+                    {
+                        value: [4300, 10000, 28000, 35000, 50000],
+                        name: '平均水平'
+                    },
+                    {
+                        value: [5000, 14000, 28000, 31000, 42000],
+                        name: '你的水平'
+                    }
+                ]
+            }]
+        };
+        chart1.setOption(option1)
+
+        var charts2 = echarts.init(document.getElementById('gh_charts2'))
+
+        option2 = {
+            title: {
+                text: '各习惯对您的影响程度',
+                x: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['饮酒', '饮茶', '睡眠', '锻炼']
+            },
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: '55%',
+                    center: ['50%', '60%'],
+                    data: [
+                        {value: 335, name: '饮酒'},
+                        {value: 310, name: '饮茶'},
+                        {value: 234, name: '睡眠'},
+                        {value: 135, name: '锻炼'}
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+
+        charts2.setOption(option2)
+    </script>
+{% endblock %}
